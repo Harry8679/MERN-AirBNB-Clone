@@ -1,12 +1,14 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import IndexPage from './pages/IndexPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
 
 const App = () => {
 
   return (
     <Routes>
       <Route index element={<IndexPage />} />
+      <Route path='/login' element={<LoginPage />} />
     </Routes>
   )
 }
