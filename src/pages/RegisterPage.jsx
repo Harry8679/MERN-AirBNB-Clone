@@ -7,9 +7,14 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const registerUser = (e) => {
+  const registerUser = async (e) => {
     e.preventDefault();
-    axios.get('http://localhost:4080/test');
+    try {
+        await axios.post('/register', { name, email, password });
+        alert('Registration successful. Now you can log in');
+    } catch (err) {
+        alert('Registration failed. Please try again later.');
+    }
   }
 
   return (
