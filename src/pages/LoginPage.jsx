@@ -1,16 +1,18 @@
-import axios from "axios";
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from 'axios';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
   const loginUser = async (e) => {
     e.preventDefault();
     try {
         await axios.post('/login', { email, password });
         alert('Registration successful. Now you can log in');
+        navigate('/');
     } catch (err) {
         alert('Registration failed. Please try again later.');
     }
@@ -26,7 +28,7 @@ const LoginPage = () => {
             <button className="primary">Login</button>
             <div className="text-center py-2 text-gray-500">
                 Do not have an account yet?
-                <Link to='/register' className="underline text-black">Register Now</Link>
+                <Link to='/register' className="underline text-black"> Register Now</Link>
             </div>
         </form>
       </div>
@@ -35,3 +37,4 @@ const LoginPage = () => {
 }
 
 export default LoginPage
+
