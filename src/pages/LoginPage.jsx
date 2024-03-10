@@ -1,16 +1,19 @@
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useContext, useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { UserContext } from "../UserContext";
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
   const loginUser = async (e) => {
     e.preventDefault();
     try {
-        await axios.post('/login', { email, password });
+        const userInfo = await axios.post('/login', { email, password });
+        setUser(userInfo.data);
         alert('Registration successful. Now you can log in');
         navigate('/');
     } catch (err) {
